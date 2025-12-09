@@ -1,0 +1,39 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de configuração temporários
+*.log
+*.tmp
+*.parquet
+*.pkl
+*.joblib
+*.h5
+*.bin
+
+
+# Diretórios gerados automaticamente
+out/
+dist/
+build/
+
+# Credenciais
+*.env
+.env
+token.txt
+
+# Streamlit cache
+.streamlit/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/

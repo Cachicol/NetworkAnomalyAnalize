@@ -1,0 +1,33 @@
+@startuml arquitetura_componentes
+
+
+package "Backend" {
+    [flow_collector.py] <<Collector>>
+    [app.py] <<API>>
+    [config.py] <<Config>>
+    [models/] <<Model Storage>>
+    [flows.csv] <<Dataset>>
+}
+
+package "Frontend Web" {
+    [index.html] <<UI>>
+    [app.js] <<Logic>>
+    [style.css] <<Style>>
+    [server.py] <<Web Server>>
+}
+
+package "Dashboard Streamlit" {
+    [app_streamlit.py] <<Dashboard>>
+}
+
+' ----- LIGACOES -----
+[flow_collector.py] --> [flows.csv] : coleta fluxos
+[app.py] --> [models/] : usa modelos IA
+[app.py] --> [flows.csv] : lê dados
+
+[index.html] --> [app.js]
+[app.js] --> [server.py] : REST/HTTP
+
+[app_streamlit.py] --> [flows.csv]
+
+@enduml

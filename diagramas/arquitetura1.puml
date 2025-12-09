@@ -1,0 +1,39 @@
+@startuml fluxo_dados
+
+
+skinparam arrowThickness 2
+skinparam packageStyle rectangle
+skinparam roundcorner 15
+skinparam shadowing true
+
+actor Usuario
+
+package "Camada de Coleta" {
+    [flow_collector.py]
+}
+
+package "Camada de Processamento" {
+    [app.py]
+    [models/]
+}
+
+package "Armazenamento" {
+    [flows.csv]
+}
+
+package "Frontends" {
+    [Dashboard Streamlit]
+    [Interface Web]
+}
+
+Usuario --> [Interface Web] : abre dashboard
+Usuario --> [Dashboard Streamlit] : analisa dados
+
+[flow_collector.py] --> [flows.csv] : gera fluxos
+[app.py] --> [flows.csv] : lê dados
+[app.py] --> [models/] : aplica IA
+
+[Dashboard Streamlit] --> [flows.csv] : lê dados processados
+[Interface Web] <-- [app.py] : API retorna informações
+
+@enduml

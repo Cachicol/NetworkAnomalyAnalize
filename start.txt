@@ -1,0 +1,21 @@
+# Ativar ambiente virtual
+.venv\Scripts\activate
+
+# Backend
+cd backend
+python -m uvicorn app:app --host 0.0.0.0 --port 8000
+
+# Frontend
+cd frontend
+python server.py
+
+# Server
+ngrok http 3000
+
+# Flow
+python flow_collector.py
+
+# Streamlit
+cd src 
+
+streamlit run app_streamlit.py --server.address=0.0.0.0 --server.port=8501  (hostear para qualquer rede)

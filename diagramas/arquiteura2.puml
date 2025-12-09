@@ -1,0 +1,34 @@
+@startuml implantacao
+
+node "Máquina Local / Servidor" {
+    
+    node "Backend" {
+        [flow_collector.py]
+        [app.py]
+        [config.py]
+        [models/]
+        [flows.csv]
+    }
+
+    node "Dashboard Streamlit" {
+        [app_streamlit.py]
+    }
+
+    node "Server.py (HTTP)" {
+        [server.py]
+    }
+}
+
+node "Navegador do Usuário" {
+    [index.html]
+    [app.js]
+    [style.css]
+}
+
+[index.html] --> [server.py] : HTTP Requests
+[app_streamlit.py] --> [flows.csv]
+[app_streamlit.py] --> [models/]
+[app.py] --> [flows.csv]
+[flow_collector.py] --> [flows.csv]
+
+@enduml

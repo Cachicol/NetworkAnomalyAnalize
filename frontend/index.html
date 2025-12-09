@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adicione esta linha -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Network Anomaly Detection</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>Network Security Monitor</h1>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span id="statusText">Conectando...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard -->
+        <main class="dashboard">
+            <!-- Cards de Métricas -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Total de Fluxos</h3>
+                        <span class="metric-value" id="totalFlows">0</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon attack">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Ataques Detectados</h3>
+                        <span class="metric-value" id="attackCount">0</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon normal">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Fluxos Normais</h3>
+                        <span class="metric-value" id="normalCount">0</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon rate">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Taxa de Ataque</h3>
+                        <span class="metric-value" id="attackRate">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <div class="controls">
+                <button id="refreshBtn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt"></i>
+                    Atualizar Dados
+                </button>
+                <button id="autoRefreshBtn" class="btn btn-secondary">
+                    <i class="fas fa-play"></i>
+                    Auto-Refresh (10s)
+                </button>
+                <div class="update-info">
+                    <span id="lastUpdate">Nunca atualizado</span>
+                </div>
+            </div>
+
+            <!-- Tabela de Fluxos -->
+            <div class="flows-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list"></i> Fluxos de Rede em Tempo Real</h2>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="all">Todos</button>
+                        <button class="view-btn" data-view="attacks">Ataques</button>
+                        <button class="view-btn" data-view="normal">Normais</button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="flows-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Origem</th>
+                                <th>Destino</th>
+                                <th>Protocolo</th>
+                                <th>Duração</th>
+                                <th>Pacotes</th>
+                                <th>Bytes</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="flowsTableBody">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span id="tableCount">Mostrando 0 fluxos</span>
+                </div>
+            </div>
+
+            <!-- Estatísticas de Ataques -->
+            <div class="stats-section" id="attackStatsSection" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Estatísticas de Ataques</h2>
+                </div>
+                <div class="stats-grid" id="attackStats">
+                    <!-- Estatísticas serão preenchidas via JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <i class="fas fa-sync fa-spin"></i>
+                <p>Analisando fluxos de rede...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Detalhes -->
+    <div id="flowModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalhes do Fluxo</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo do modal será preenchido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
