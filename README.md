@@ -1,0 +1,1 @@
+Uso de treinamento de maquina para a analise em tempo real de uma rede de internet, voltado a detecção de ataques. Instruções de como rodar em start.txt, se quiser fazer a analise em tempo real tem que configurar seu cicflowmeter e rodar o flow_collector, atualmente minha rede está salva.
